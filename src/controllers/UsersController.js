@@ -1,5 +1,6 @@
 const UsersRepository = require("../repositories/UserRepository")
 const UsersCreateService = require("../services/UsersCreateService")
+const UsersShowService = require("../services/UsersShowService")
 
 class UsersController {
   async create(req, res) {
@@ -15,6 +16,18 @@ class UsersController {
     })
 
     return res.json()
+  }
+
+  async show(req, res) {
+    const { id } = req.user
+
+    const usersRepository = new UsersRepository()
+
+    const usersShowService = new UsersShowService(usersRepository)
+
+    const user = await usersShowService.execute(id)
+
+    return res.json(user)
   }
 }
 
