@@ -2,10 +2,11 @@ require("express-async-errors")
 require("dotenv/config")
 const cookieParser = require("cookie-parser")
 
-
 const cors = require("cors")
 const express = require("express")
 const routes = require("./routes")
+
+const uploadConfig = require("./configs/upload")
 
 const AppError = require("./utils/AppError")
 const migrateAndCreateMaster = require("./utils/MigrateAndCreateMaster")
@@ -16,6 +17,8 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 app.use(cookieParser())
+
+app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER))
 
 app.use(routes)
 
