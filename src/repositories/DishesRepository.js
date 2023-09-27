@@ -44,6 +44,12 @@ class DishesRepository {
     const diskStorage = new DiskStorage()
     await diskStorage.deleteFile(dish.image)
   }
+
+  async indexAllDishes() {
+    const dishes = await knex("dishes").select("*")
+
+    return dishes
+  }
 }
 
 module.exports = DishesRepository

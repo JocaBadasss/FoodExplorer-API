@@ -18,5 +18,6 @@ dishesRouter.patch(
   upload.single("image"),
   dishesImageControllers.update
 )
+dishesRouter.get("/", dishesControllers.index)
 
 module.exports = dishesRouter

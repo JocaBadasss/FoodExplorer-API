@@ -1,4 +1,6 @@
-const DishesCreateServices = require("../services/DishesCreateService")
+const DishesCreateService = require("../services/DishesCreateService")
+const DishesIndexService = require("../services/DishesIndexService")
+
 const DishesRepository = require("../repositories/DishesRepository")
 
 class DishesControllers {
@@ -8,9 +10,9 @@ class DishesControllers {
     const user_id = req.user.id
 
     const dishesRepository = new DishesRepository()
-    const dishesCreateServices = new DishesCreateServices(dishesRepository)
+    const dishesCreateService = new DishesCreateService(dishesRepository)
 
-    const dish_id = await dishesCreateServices.execute({
+    const dish_id = await dishesCreateService.execute({
       name,
       category,
       description,
@@ -20,6 +22,15 @@ class DishesControllers {
     })
 
     return res.json(dish_id)
+  }
+
+  async index(req, res) {
+    const dishesRepository = new DishesRepository()
+    const dishesIndexService = new DishesIndexService(dishesRepository)
+
+    const dishes = await dishesIndexService.execute()
+
+    return res.json(dishes)
   }
 }
 
