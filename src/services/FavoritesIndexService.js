@@ -4,7 +4,7 @@ class FavoritesIndexService {
   }
 
   async execute(user_id) {
-    const favorites = await this.favoritesRepository.find(user_id)
+    const favorites = await this.favoritesRepository.findAll(user_id)
 
     return favorites
   }

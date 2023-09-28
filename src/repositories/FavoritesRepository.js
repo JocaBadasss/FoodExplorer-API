@@ -30,10 +30,29 @@ class FavoritesRepository {
     return
   }
 
-  async find(user_id) {
+  async findAll(user_id) {
     const favorites = await knex("favorites")
       .select("dish_id")
       .where({ user_id })
+
+    const dishes = []
+
+    for (const favorite of favorites) {
+      const dish = await knex("dishes")
+        .select("name", "image", "id")
+        .where("id", favorite.dish_id)
+        .first()
+
+      dishes.push(dish)
+    }
+
+    return dishes
+  }
+
+  async findByDishId({ user_id, dish_id }) {
+    const favorites = await knex("favorites")
+      .select("dish_id")
+      .where({ user_id, dish_id })
 
     return favorites
   }

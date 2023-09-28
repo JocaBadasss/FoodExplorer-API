@@ -11,5 +11,6 @@ favoritesRouter.use(ensureIsAutheticated)
 favoritesRouter.post("/:dish_id", favoritesControllers.create)
 favoritesRouter.delete("/:dish_id", favoritesControllers.delete)
 favoritesRouter.get("/", favoritesControllers.index)
+favoritesRouter.get("/:dish_id", favoritesControllers.show)
 
 module.exports = favoritesRouter
