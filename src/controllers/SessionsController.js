@@ -1,5 +1,5 @@
 const SessionsRepository = require("../repositories/SessionsRepository")
-const SessionsCreateServices = require("../services/SessionsCreateServices")
+const SessionsCreateServices = require("../services/SessionsServices/SessionsCreateServices")
 
 class SessionsController {
   async create(req, res) {

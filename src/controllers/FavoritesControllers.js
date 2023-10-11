@@ -1,8 +1,8 @@
 const FavoritesRepository = require("../repositories/FavoritesRepository")
-const FavoritesCreateService = require("../services/FavoritesCreateService")
-const FavoritesIndexService = require("../services/FavoritesIndexService")
-const FavoritesDeleteService = require("../services/FavoritesDeleteService")
-const FavoritesShowService = require("../services/FavoritesShowService")
+const FavoritesCreateService = require("../services/FavoriteServices/FavoritesCreateService")
+const FavoritesIndexService = require("../services/FavoriteServices/FavoritesIndexService")
+const FavoritesDeleteService = require("../services/FavoriteServices/FavoritesDeleteService")
+const FavoritesShowService = require("../services/FavoriteServices/FavoritesShowService")
 
 class FavoritesControllers {
   async create(req, res) {

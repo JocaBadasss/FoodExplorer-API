@@ -4,7 +4,7 @@ exports.up = (knex) =>
     table.string("name")
     table.string("category")
     table.text("description")
-    table.decimal("price", 10, 2)
+    table.integer("price_cents")
     table.string("image")
     table.integer("user_id").references("id").inTable("users")
     table.timestamp("created_at").defaultTo(knex.fn.now())

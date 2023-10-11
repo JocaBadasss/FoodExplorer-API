@@ -19,5 +19,6 @@ dishesRouter.patch(
   dishesImageControllers.update
 )
 dishesRouter.get("/", dishesControllers.index)
+dishesRouter.get("/:dish_id", dishesControllers.show)
 
 module.exports = dishesRouter

@@ -1,5 +1,5 @@
-const AppError = require("../utils/AppError")
-const DiskStorage = require("../providers/DiskStorage")
+const AppError = require("../../utils/AppError")
+const DiskStorage = require("../../providers/DiskStorage")
 
 class DishesUpdateImageService {
   constructor(DishesRepository) {
@@ -22,8 +22,6 @@ class DishesUpdateImageService {
       imageFileName,
       dish_id,
     })
-
-    
 
     return updatedDish
   }

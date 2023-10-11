@@ -2,12 +2,14 @@ const knex = require("../database/knex")
 const DiskStorage = require("../providers/DiskStorage")
 
 class DishesRepository {
-  async createDish({ name, category, description, price, user_id }) {
+  async createDish({ name, category, description, price_cents, user_id }) {
+    const newPrice = Number(price_cents.replace(",", ".") * 100)
+
     const [dish_id] = await knex("dishes").insert({
       name,
       category,
       description,
-      price,
+      price_cents: newPrice,
       user_id,
     })
 
@@ -22,6 +24,19 @@ class DishesRepository {
     const dish = await knex("dishes").select("*").where("id", dish_id).first()
 
     return dish
+  }
+
+  async findDishAndTagsByDishId(dish_id) {
+    const dish = await knex("dishes").select("*").where("id", dish_id).first()
+    const tags = await knex("dishes_tags")
+      .select("*")
+      .where({ dish_id })
+      .orderBy("name")
+
+    console.log(tags)
+    console.log(dish)
+
+    return { ...dish, tags }
   }
 
   async updateDishImage({ dish, imageFileName, dish_id }) {

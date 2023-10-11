@@ -1,6 +1,6 @@
 const UsersRepository = require("../repositories/UserRepository")
-const UsersCreateService = require("../services/UsersCreateService")
-const UsersShowService = require("../services/UsersShowService")
+const UsersCreateService = require("../services/UsersServices/UsersCreateService")
+const UsersShowService = require("../services/UsersServices/UsersShowService")
 
 class UsersController {
   async create(req, res) {

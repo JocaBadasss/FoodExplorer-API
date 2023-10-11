@@ -1,4 +1,4 @@
-const AdminCreateService = require("../services/AdminCreateService")
+const AdminCreateService = require("../services/AdminServices/AdminCreateService")
 const AdminRepository = require("../repositories/AdminRepository")
 
 class AdminControllers {

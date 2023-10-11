@@ -1,13 +1,13 @@
-const AppError = require("../utils/AppError")
+const AppError = require("../../utils/AppError")
 const { hash } = require("bcryptjs")
 
 class AdminCreateService {
-  constructor(UserRepository) {
-    this.UserRepository = UserRepository
+  constructor(AdminRepository) {
+    this.AdminRepository = AdminRepository
   }
 
   async execute({ name, email, password }) {
-    const checkIfEmailAlreadyExists = await this.UserRepository.findByEmail(
+    const checkIfEmailAlreadyExists = await this.AdminRepository.findByEmail(
       email
     )
 
@@ -17,14 +17,14 @@ class AdminCreateService {
 
     const hashedPassword = await hash(password, 8)
 
-    const userCreated = await this.UserRepository.create({
+    const AdminCreated = await this.AdminRepository.create({
       name,
       email,
       password: hashedPassword,
-      role: "User",
+      role: "Admin",
     })
 
-    return userCreated
+    return AdminCreated
   }
 }
 
