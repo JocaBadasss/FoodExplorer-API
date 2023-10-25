@@ -1,0 +1,19 @@
+{
+    "dishsIds": [
+        4,
+        3
+    ],
+    "token": "750b118727b830c2ac991f7c0af36ae5",
+    "issuer_id": "24",
+    "payment_method_id": "master",
+    "transaction_amount": 169.79,
+    "installments": 1,
+    "description": "Salada Ravanello, Tè d'autunno",
+    "payer": {
+        "email": "sdsdafgsdgsdgds@email.com",
+        "identification": {
+            "type": "CPF",
+            "number": "12345678909"
+        }
+    }
+}
