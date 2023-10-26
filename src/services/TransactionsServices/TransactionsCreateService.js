@@ -27,13 +27,6 @@ class TransactionsCreateService {
       payer,
     }
 
-    const createOrder = await this.TransactionsRepository.createOrderHistory({
-      user_id: null,
-      status: "pending",
-      dishs,
-    })
-    
-
     const response = await this.TransactionsRepository.createTransaction(
       paymentData
     )
