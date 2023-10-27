@@ -7,6 +7,7 @@ const dishesRouter = require("./dishes.routes")
 const favoritesRoutes = require("./favorites.routes")
 const transactionsRoutes = require("./transactions.routes")
 const ordersRoutes = require("./orders.routes")
+const webHooksRoutes = require("./webhooks.routes")
 
 const routes = Router()
 
@@ -17,5 +18,6 @@ routes.use("/dishes", dishesRouter)
 routes.use("/favorites", favoritesRoutes)
 routes.use("/transactions", transactionsRoutes)
 routes.use("/orders", ordersRoutes)
+routes.use("/webhooks", webHooksRoutes)
 
 module.exports = routes
