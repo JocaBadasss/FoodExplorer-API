@@ -1,4 +1,4 @@
-const {Router} = require("express")
+const { Router } = require("express")
 const WebHooksControllers = require("../controllers/WebHooksControllers")
 
 const webHooksControllers = new WebHooksControllers()
