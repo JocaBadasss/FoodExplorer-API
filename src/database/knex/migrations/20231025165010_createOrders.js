@@ -1,7 +1,7 @@
 exports.up = (knex) =>
   knex.schema.createTable("orders", (table) => {
     table.increments("id")
-    table.string("status")
+    table.string("status").notNullable()
     table.timestamp("created_at").defaultTo(knex.fn.now())
     
   })

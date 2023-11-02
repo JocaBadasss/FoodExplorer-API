@@ -15,7 +15,7 @@ class UsersController {
       password,
     })
 
-    return res.json()
+    return res.status(201).json()
   }
 
   async show(req, res) {
@@ -27,7 +27,7 @@ class UsersController {
 
     const user = await usersShowService.execute(id)
 
-    return res.json(user)
+    return res.status(201).json(user)
   }
 }
 

@@ -5,4 +5,7 @@ module.exports = {
   testMatch: [
     "<rootDir>/src/**/*.spec.js"
   ],
+  setupFiles: [
+    "dotenv/config"
+  ]
 }

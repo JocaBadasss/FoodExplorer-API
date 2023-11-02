@@ -2,14 +2,17 @@ const knex = require("../database/knex")
 const DiskStorage = require("../providers/DiskStorage")
 
 class DishesRepository {
-  async createDish({ name, category, description, price_cents, user_id }) {
-    const newPrice = Number(price_cents.replace(",", ".") * 100)
+  async verifyIfDishNameAlreadyExists(name) {
+    const dish = await knex("dishes").select("*").where("name", name)
 
+    return dish
+  }
+  async createDish({ name, category, description, price_cents, user_id }) {
     const [dish_id] = await knex("dishes").insert({
       name,
       category,
       description,
-      price_cents: newPrice,
+      price_cents,
       user_id,
     })
 
@@ -20,8 +23,47 @@ class DishesRepository {
     await knex("dishes_tags").insert(tagsToInsert)
   }
 
+  async updateDish({ name, category, description, price_cents, dish_id }) {
+    await knex("dishes")
+      .update({
+        name,
+        category,
+        description,
+        price_cents,
+      })
+      .where("id", dish_id)
+
+    return
+  }
+
+  async updateTags({ tagsToInsert, dish_id, user_id }) {
+    await knex("dishes_tags").where({ dish_id, user_id }).delete()
+
+    await knex("dishes_tags").insert(tagsToInsert)
+
+    return
+  }
+
   async findDishByDishId(dish_id) {
     const dish = await knex("dishes").select("*").where("id", dish_id).first()
+
+    return dish
+  }
+
+  async findUpdatedDishById(dish_id) {
+    const dish = await knex("dishes as d")
+      .select(
+        "d.id",
+        "d.name",
+        "d.category",
+        "d.description",
+        "d.price_cents",
+        "t.name as tag",
+        "t.id as tag_id"
+      )
+      .leftJoin("dishes_tags as t", "d.id", "t.dish_id")
+      .where("d.id", dish_id)
+      .first()
 
     return dish
   }

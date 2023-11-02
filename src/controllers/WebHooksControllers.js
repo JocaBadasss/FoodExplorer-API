@@ -1,14 +1,19 @@
-const { sendSseData } = require("../routes/sse.routes")
+const {sendEventToClients} = require("../utils/sse")
 
 class WebHooksControllers {
   async create(req, res) {
-    const response = req.body
+    try {
+      const response = req.body
 
-    console.log("payload do mercado pago", response)
+      console.log("payload do mercado pago", response)
 
-    sendSseData(response)
+      sendEventToClients(response)
 
-    res.status(200)
+      res.status(200).send("Webhook processado com sucesso")
+    } catch (error) {
+      console.error("Erro no tratamento do webhook:", error)
+      res.status(500).send("Erro interno no servidor")
+    }
   }
 }
 

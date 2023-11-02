@@ -12,7 +12,7 @@ class SessionsController {
 
     const session = await sessionsCreateServices.execute({ email, password })
 
-    return res.json(session)
+    return res.status(201).json(session)
   }
 }
 

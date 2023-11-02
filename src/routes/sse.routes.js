@@ -1,14 +1,10 @@
 const { Router } = require("express")
-const SSE = require("express-sse")
-const SseControllers = require("../controllers/sseControllers")
+const SseControllers = require("../controllers/SseControllers")
 
-const sse = new SSE()
+const sseControllers = new SseControllers()
+
 const sseRouter = Router()
 
-function sendSseData(data) {
-  sse.send(data)
-}
-
-sseRouter.get("/", sse.init)
+sseRouter.get("/", sseControllers.create)
 
 module.exports = sseRouter
