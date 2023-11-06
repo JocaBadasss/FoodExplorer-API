@@ -20,5 +20,6 @@ dishesRouter.patch(
 )
 dishesRouter.get("/", dishesControllers.index)
 dishesRouter.get("/:dish_id", dishesControllers.show)
+dishesRouter.patch("/", ensureIsAdmin, dishesControllers.update)
 
 module.exports = dishesRouter

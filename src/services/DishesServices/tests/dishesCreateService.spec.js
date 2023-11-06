@@ -255,7 +255,7 @@ describe("DishesCreateServices", () => {
   })
 
   it("should be able to create dishes in bulk", async () => {
-    const numberOfDishes = 1000 
+    const numberOfDishes = 1000
 
     for (let i = 0; i < numberOfDishes; i++) {
       const dish = {

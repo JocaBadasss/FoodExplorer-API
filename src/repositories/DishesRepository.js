@@ -50,7 +50,7 @@ class DishesRepository {
     return dish
   }
 
-  async findUpdatedDishById(dish_id) {
+  async findUpdatedDishAndTagsById(dish_id) {
     const dish = await knex("dishes as d")
       .select(
         "d.id",
@@ -75,10 +75,13 @@ class DishesRepository {
       .where({ dish_id })
       .orderBy("name")
 
-    console.log(tags)
-    console.log(dish)
-
     return { ...dish, tags }
+  }
+
+  async indexAllDishes() {
+    const dishes = await knex("dishes").select("*")
+
+    return dishes
   }
 
   async updateDishImage({ dish, imageFileName, dish_id }) {
@@ -100,12 +103,6 @@ class DishesRepository {
   async deleteDishImage(dish) {
     const diskStorage = new DiskStorage()
     await diskStorage.deleteFile(dish.image)
-  }
-
-  async indexAllDishes() {
-    const dishes = await knex("dishes").select("*")
-
-    return dishes
   }
 }
 

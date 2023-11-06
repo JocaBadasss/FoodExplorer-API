@@ -24,11 +24,11 @@ class OrdersRepository {
 
   async updateOrderStatus({ order_id, status }) {
     await knex("orders").where({ id: order_id }).update({ status })
+
+    return
   }
 
   async showUserOrders(user_id, status) {
-    console.log(status)
-
     if (status) {
       const orders = await knex("orders as o")
         .select("o.id", "o.status", "od.quantity", "d.name")

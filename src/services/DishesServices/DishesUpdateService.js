@@ -6,7 +6,15 @@ class DishesUpdateService {
     this.dishesRepository = DishesRepository
   }
 
-  async execute({ id, name, description, price_cents, tags, category }) {
+  async execute({
+    id,
+    name,
+    description,
+    price_cents,
+    tags,
+    category,
+    user_id,
+  }) {
     try {
       await dishesUpdateValidationSchema.validate(
         { name, category, description, price_cents, tags },
@@ -20,7 +28,6 @@ class DishesUpdateService {
     }
 
     try {
-
       const findDishByDishId = await this.dishesRepository.findDishByDishId(id)
 
       if (!findDishByDishId) {
@@ -40,14 +47,19 @@ class DishesUpdateService {
       const tagsToInsert = tags.map((tag) => {
         return {
           name: tag,
-          id,
-          user_id: findDishByDishId.user_id,
+          user_id,
+          dish_id: id,
         }
       })
 
-      await this.dishesRepository.updateTags({ tagsToInsert, id })
+      await this.dishesRepository.updateTags({
+        tagsToInsert,
+        dish_id: id,
+        user_id,
+      })
 
-      const updatedDish = await this.dishesRepository.findUpdatedDishById(id)
+      const updatedDish =
+        await this.dishesRepository.findUpdatedDishAndTagsById(id)
 
       const groupedTags = updatedDish.map((dish) => {
         return {
@@ -55,10 +67,6 @@ class DishesUpdateService {
           name: dish.tag,
         }
       })
-
-      console.log(updatedDish)
-
-      console.log(groupedTags)
 
       const result = {
         id: updatedDish[0].id,
@@ -69,11 +77,8 @@ class DishesUpdateService {
         tags: groupedTags,
       }
 
-      console.log(result)
-
       return result
     } catch (error) {
-      console.error(error)
       throw new AppError(error.message, 400)
     }
   }

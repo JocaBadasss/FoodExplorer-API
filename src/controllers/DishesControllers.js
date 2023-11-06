@@ -22,16 +22,27 @@ class DishesControllers {
       tags,
     })
 
-    return res.json(dish_id)
+    return res.json(dish_id).status(200)
   }
 
-  async index(req, res) {
+  async update(req, res) {
+    const { id, name, category, description, price_cents, tags } = req.body
+    const user_id = req.user.id
+
     const dishesRepository = new DishesRepository()
-    const dishesIndexService = new DishesIndexService(dishesRepository)
+    const dishesUpdateService = new DishesUpdateService(dishesRepository)
 
-    const dishes = await dishesIndexService.execute()
+    const updatedDish = await dishesUpdateService.execute({
+      id,
+      name,
+      category,
+      description,
+      price_cents,
+      tags,
+      user_id,
+    })
 
-    return res.json(dishes)
+    return res.json(updatedDish).status(200)
   }
 
   async show(req, res) {
@@ -42,7 +53,16 @@ class DishesControllers {
 
     const dish = await dishesShowService.execute(dish_id)
 
-    return res.json(dish)
+    return res.json(dish).status(200)
+  }
+
+  async index(req, res) {
+    const dishesRepository = new DishesRepository()
+    const dishesIndexService = new DishesIndexService(dishesRepository)
+
+    const dishes = await dishesIndexService.execute()
+
+    return res.json(dishes).status(200)
   }
 }
 

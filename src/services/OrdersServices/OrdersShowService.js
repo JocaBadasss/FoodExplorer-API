@@ -4,7 +4,6 @@ class OrdersShowService {
   }
 
   async execute({ user_id }, status) {
-    console.log(status)
     const orders = await this.ordersRepository.showUserOrders(user_id, status)
 
     const groupedOrders = orders.reduce((result, order) => {

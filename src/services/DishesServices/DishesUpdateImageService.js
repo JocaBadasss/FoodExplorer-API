@@ -1,5 +1,4 @@
 const AppError = require("../../utils/AppError")
-const DiskStorage = require("../../providers/DiskStorage")
 
 class DishesUpdateImageService {
   constructor(DishesRepository) {
@@ -7,23 +6,27 @@ class DishesUpdateImageService {
   }
 
   async execute({ dish_id, imageFileName }) {
-    const dish = this.DishesRepository.findDishByDishId(dish_id)
+    try {
+      const dish = await this.DishesRepository.findDishByDishId(dish_id)
 
-    if (!dish) {
-      throw new AppError("Dish not found")
+      if (!dish) {
+        throw new AppError("Dish not found", 404)
+      }
+
+      if (dish.image) {
+        await this.DishesRepository.deleteDishImage(dish.image)
+      }
+
+      const updatedDish = await this.DishesRepository.updateDishImage({
+        dish,
+        imageFileName,
+        dish_id,
+      })
+
+      return updatedDish
+    } catch (error) {
+      throw new AppError(error.message)
     }
-
-    if (dish.image) {
-      await this.DishesRepository.deleteDishImage(dish.image)
-    }
-
-    const updatedDish = await this.DishesRepository.updateDishImage({
-      dish,
-      imageFileName,
-      dish_id,
-    })
-
-    return updatedDish
   }
 }
 
