@@ -1,3 +1,6 @@
+const AppError = require("../../utils/AppError")
+const TransactionsCreateServiceValidationSchema = require("../../schemas/TransactionsValidations/TransactionsCreateServiceValidation")
+
 class TransactionsCreateService {
   constructor(TransactionsRepository) {
     this.TransactionsRepository = TransactionsRepository
@@ -12,26 +15,50 @@ class TransactionsCreateService {
     payer,
     dishs,
   }) {
-    const getDishsAmount =
-      await this.TransactionsRepository.verifyDishsAmountByIds(dishs)
-
-    const transaction_amount = getDishsAmount
-
-    const paymentData = {
-      transaction_amount,
-      token,
-      issuer_id,
-      payment_method_id,
-      installments,
-      description,
-      payer,
+    try {
+      await TransactionsCreateServiceValidationSchema.validate(
+        {
+          token,
+          issuer_id,
+          payment_method_id,
+          installments,
+          description,
+          payer,
+          dishs,
+        },
+        { abortEarly: false }
+      )
+    } catch (error) {
+      console.log("aqui validate")
+      const formattedErrors = error.inner.map((err) => err.message).join(", ")
+      throw new AppError(`Erro de validação: ${formattedErrors}`, 400)
     }
 
-    const response = await this.TransactionsRepository.createTransaction(
-      paymentData
-    )
+    try {
+      const getDishsAmount =
+        await this.TransactionsRepository.verifyDishsAmountByIds(dishs)
 
-    return response
+      const transaction_amount = getDishsAmount
+
+      const paymentData = {
+        transaction_amount,
+        token,
+        issuer_id,
+        payment_method_id,
+        installments,
+        description,
+        payer,
+      }
+
+
+      const response = await this.TransactionsRepository.createTransaction(
+        paymentData
+      )
+
+      return response
+    } catch (error) {
+      throw new AppError(error)
+    }
   }
 }
 

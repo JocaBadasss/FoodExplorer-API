@@ -4,9 +4,12 @@ class FavoritesCreateService {
   }
 
   async execute({ user_id, dish_id }) {
-    await this.favoritesRepository.create({ user_id, dish_id })
+    const favoritedDish = await this.favoritesRepository.create({
+      user_id,
+      dish_id,
+    })
 
-    return
+    return favoritedDish
   }
 }
 

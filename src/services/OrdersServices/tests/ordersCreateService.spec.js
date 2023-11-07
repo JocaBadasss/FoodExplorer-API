@@ -25,6 +25,18 @@ describe("OrdersCreateService", () => {
     expect(order_id).toBe(2)
   })
 
+  it("should be able to create a order with only id", async () => {
+    const dishs_ids = [{ id: 1 }, { id: 2 }]
+    const user_id = 1
+
+    const order_id = await ordersCreateService.execute({
+      dishs_ids,
+      user_id,
+    })
+
+    expect(order_id).toBe(2)
+  })
+
   it("should not be able to create a order with invalid dishs ids", async () => {
     const dishs_ids = [
       { id: 3, quantity: 1 },

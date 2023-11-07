@@ -4,7 +4,10 @@ class FavoritesShowService {
   }
 
   async execute({ user_id, dish_id }) {
-    const dishId = await this.favoritesRepository.findByDishId({ user_id, dish_id })
+    const dishId = await this.favoritesRepository.findByDishId({
+      user_id,
+      dish_id,
+    })
 
     return dishId
   }

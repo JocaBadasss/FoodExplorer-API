@@ -2,7 +2,17 @@ class OrdersRepositoryInMemory {
   orders = [
     {
       id: 1,
+      status: "concluido",
+      created_at: "2023-10-25 17:39:54",
+    },
+    {
+      id: 2,
       status: "pendente",
+      created_at: "2023-10-25 17:39:54",
+    },
+    {
+      id: 3,
+      status: "entregue",
       created_at: "2023-10-25 17:39:54",
     },
   ]
@@ -14,6 +24,54 @@ class OrdersRepositoryInMemory {
       dish_id: 1,
       quantity: 1,
     },
+    {
+      id: 2,
+      order_id: 1,
+      dish_id: 2,
+      quantity: 2,
+    },
+    {
+      id: 3,
+      order_id: 1,
+      dish_id: 3,
+      quantity: 3,
+    },
+    {
+      id: 4,
+      order_id: 2,
+      dish_id: 1,
+      quantity: 1,
+    },
+    {
+      id: 5,
+      order_id: 2,
+      dish_id: 2,
+      quantity: 2,
+    },
+    {
+      id: 6,
+      order_id: 2,
+      dish_id: 3,
+      quantity: 3,
+    },
+    {
+      id: 7,
+      order_id: 3,
+      dish_id: 1,
+      quantity: 1,
+    },
+    {
+      id: 8,
+      order_id: 3,
+      dish_id: 2,
+      quantity: 2,
+    },
+    {
+      id: 9,
+      order_id: 3,
+      dish_id: 3,
+      quantity: 3,
+    },
   ]
 
   orders_history = [
@@ -21,6 +79,18 @@ class OrdersRepositoryInMemory {
       id: 1,
       user_id: 1,
       order_id: 1,
+      created_at: "2023-10-25 17:39:54",
+    },
+    {
+      id: 2,
+      user_id: 1,
+      order_id: 2,
+      created_at: "2023-10-25 17:39:54",
+    },
+    {
+      id: 1,
+      user_id: 1,
+      order_id: 3,
       created_at: "2023-10-25 17:39:54",
     },
   ]
@@ -35,6 +105,30 @@ class OrdersRepositoryInMemory {
     {
       id: 2,
       name: "Dish 2",
+      price_cents: 2000,
+      created_at: "2023-10-25 17:39:54",
+    },
+    {
+      id: 3,
+      name: "Dish 3",
+      price_cents: 2000,
+      created_at: "2023-10-25 17:39:54",
+    },
+    {
+      id: 4,
+      name: "Dish 4",
+      price_cents: 2000,
+      created_at: "2023-10-25 17:39:54",
+    },
+    {
+      id: 5,
+      name: "Dish 5",
+      price_cents: 2000,
+      created_at: "2023-10-25 17:39:54",
+    },
+    {
+      id: 6,
+      name: "Dish 6",
       price_cents: 2000,
       created_at: "2023-10-25 17:39:54",
     },
@@ -123,6 +217,53 @@ class OrdersRepositoryInMemory {
         return {
           id: order.id,
           status: order.status,
+          quantity: orderDish.quantity,
+          name: dish.name,
+        }
+      })
+
+      return result
+    }
+  }
+
+  async indexAllOrders(status) {
+    if (status) {
+      const orders = this.orders.filter((order) => {
+        const orderHistory = this.orders_history.find(
+          (oh) => oh.order_id === order.id
+        )
+        return order.status === status && orderHistory
+      })
+
+      const result = orders.map((order) => {
+        const orderDish = this.orders_dishs.find(
+          (od) => od.order_id === order.id
+        )
+        const dish = this.dishs.find((d) => d.id === orderDish.dish_id)
+        return {
+          id: order.id,
+          status: order.status,
+          created_at: order.created_at,
+          quantity: orderDish.quantity,
+          name: dish.name,
+        }
+      })
+
+      return result
+    }
+
+    if (!status) {
+      const orders = this.orders
+
+      const result = orders.map((order) => {
+        const orderDish = this.orders_dishs.find(
+          (od) => od.order_id === order.id
+        )
+        const dish = this.dishs.find((d) => d.id === orderDish.dish_id)
+        return {
+          id: order.id,
+          status: order.status,
+          created_at: order.created_at,
           quantity: orderDish.quantity,
           name: dish.name,
         }

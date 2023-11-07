@@ -22,15 +22,9 @@ class TransactionsRepository {
   async createTransaction(paymentData) {
     const mercadoPagoRepository = new MercadoPagoRepository()
 
-
-
     const response = await mercadoPagoRepository.createPayment(paymentData)
 
     return response
-  }
-
-  async createOrderHistory({ user_id, status, details }) {
-    
   }
 }
 

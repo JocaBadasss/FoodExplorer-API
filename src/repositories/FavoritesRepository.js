@@ -7,12 +7,11 @@ class FavoritesRepository {
       .where({ user_id, dish_id })
       .first()
     if (checkIfDishAlreadyFavorited) {
-      throw new AppError("Dish already exists")
-    } else {
-      await knex("favorites").insert({ user_id, dish_id })
+      throw new AppError("Dish already favorited")
     }
+    const result = await knex("favorites").insert({ user_id, dish_id })
 
-    return
+    return result
   }
 
   async delete({ user_id, dish_id }) {
@@ -27,7 +26,9 @@ class FavoritesRepository {
 
     await knex("favorites").where({ user_id, dish_id }).delete()
 
-    return
+    const result = await knex("favorites").where({ user_id, dish_id })
+
+    return result
   }
 
   async findAll(user_id) {

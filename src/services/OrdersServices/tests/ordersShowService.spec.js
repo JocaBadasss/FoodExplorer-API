@@ -15,11 +15,22 @@ describe("OrdersShowService", () => {
     const status = "pendente"
 
     const orders = await ordersShowService.execute({ user_id }, status)
-    const expectedData = [
-      { dishs: [{ name: "Dish 1", quantity: 1 }], id: 1, status: "pendente" },
-    ]
 
-    expect(orders).toEqual(expectedData)
+    expect(Array.isArray(orders)).toBe(true)
+    expect(orders).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          status: "pendente",
+          id: expect.any(Number),
+          dishs: expect.arrayContaining([
+            expect.objectContaining({
+              name: expect.any(String),
+              quantity: expect.any(Number),
+            }),
+          ]),
+        }),
+      ])
+    )
   })
 
   it("should be able to show user orders without status", async () => {
@@ -27,10 +38,20 @@ describe("OrdersShowService", () => {
 
     const orders = await ordersShowService.execute({ user_id })
 
-    const expectedData = [
-      { dishs: [{ name: "Dish 1", quantity: 1 }], id: 1, status: "pendente" },
-    ]
-
-    expect(orders).toEqual(expectedData)
+    expect(Array.isArray(orders)).toBe(true)
+    expect(orders).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: expect.any(Number),
+          status: expect.any(String),
+          dishs: expect.arrayContaining([
+            expect.objectContaining({
+              quantity: expect.any(Number),
+              name: expect.any(String),
+            }),
+          ]),
+        }),
+      ])
+    )
   })
 })
