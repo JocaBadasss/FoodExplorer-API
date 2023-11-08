@@ -1,12 +1,18 @@
+const AppError = require("../../utils/AppError")
+
 class FavoritesIndexService {
   constructor(favoritesRepository) {
     this.favoritesRepository = favoritesRepository
   }
 
   async execute(user_id) {
-    const favorites = await this.favoritesRepository.findAll(user_id)
+    try {
+      const favorites = await this.favoritesRepository.findAll(user_id)
 
-    return favorites
+      return favorites
+    } catch (error) {
+      throw new AppError(error.message, 400)
+    }
   }
 }
 

@@ -118,7 +118,7 @@ describe("DishesUpdateService", () => {
 
   it("should not be able to update a dish that does not exist", async () => {
     const dish = {
-      id: 6,
+      id: 7,
       name: "Salada Ravanello",
       category: "Sobremesas",
       description:

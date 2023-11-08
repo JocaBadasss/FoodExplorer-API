@@ -12,7 +12,7 @@ class OrdersControllers {
 
     const orders = await ordersShowService.execute({ user_id }, status)
 
-    return res.json(orders)
+    return res.status(201).json(orders)
   }
 
   async index(req, res) {
@@ -23,7 +23,7 @@ class OrdersControllers {
 
     const orders = await ordersIndexService.execute(status)
 
-    return res.json(orders)
+    return res.status(201).json(orders)
   }
 }
 

@@ -1,6 +1,8 @@
 const DishesCreateService = require("../services/DishesServices/DishesCreateService")
 const DishesIndexService = require("../services/DishesServices/DishesIndexService")
 const DishesShowService = require("../services/DishesServices/DishesShowService")
+const DishesUpdateService = require("../services/DishesServices/DishesUpdateService")
+const DishesDeleteService = require("../services/DishesServices/DishesDeleteService")
 
 const DishesRepository = require("../repositories/DishesRepository")
 
@@ -22,7 +24,7 @@ class DishesControllers {
       tags,
     })
 
-    return res.json(dish_id).status(200)
+    return res.status(201).json(dish_id)
   }
 
   async update(req, res) {
@@ -42,7 +44,7 @@ class DishesControllers {
       user_id,
     })
 
-    return res.json(updatedDish).status(200)
+    return res.status(201).json(updatedDish)
   }
 
   async show(req, res) {
@@ -51,18 +53,31 @@ class DishesControllers {
     const dishesRepository = new DishesRepository()
     const dishesShowService = new DishesShowService(dishesRepository)
 
-    const dish = await dishesShowService.execute(dish_id)
+    const dish = await dishesShowService.execute({ dish_id })
 
-    return res.json(dish).status(200)
+    return res.status(201).json(dish)
   }
 
   async index(req, res) {
+    const { query } = req.query
+
     const dishesRepository = new DishesRepository()
     const dishesIndexService = new DishesIndexService(dishesRepository)
 
-    const dishes = await dishesIndexService.execute()
+    const dishes = await dishesIndexService.execute(query)
 
-    return res.json(dishes).status(200)
+    return res.status(201).json(dishes)
+  }
+
+  async delete(req, res) {
+    const { dish_id } = req.params
+
+    const dishesRepository = new DishesRepository()
+    const dishesDeleteService = new DishesDeleteService(dishesRepository)
+
+    const isDeleted = await dishesDeleteService.execute(dish_id)
+
+    return res.status(201).json({ isDeleted })
   }
 }
 

@@ -19,7 +19,7 @@ class FavoritesControllers {
       dish_id,
     })
 
-    return res.json()
+    return res.json().status(201)
   }
 
   async show(req, res) {
@@ -34,7 +34,7 @@ class FavoritesControllers {
       dish_id,
     })
 
-    return res.json(dishId)
+    return res.json(dishId).status(201)
   }
 
   async index(req, res) {
@@ -45,7 +45,7 @@ class FavoritesControllers {
 
     const favorites = await favoritesIndexService.execute(user_id)
 
-    return res.json(favorites)
+    return res.json(favorites).status(201)
   }
 
   async delete(req, res) {
@@ -62,7 +62,7 @@ class FavoritesControllers {
       dish_id,
     })
 
-    return res.json()
+    return res.status(201).json()
   }
 }
 

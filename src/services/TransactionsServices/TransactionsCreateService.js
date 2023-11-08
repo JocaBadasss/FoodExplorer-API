@@ -50,14 +50,13 @@ class TransactionsCreateService {
         payer,
       }
 
-
       const response = await this.TransactionsRepository.createTransaction(
         paymentData
       )
 
       return response
     } catch (error) {
-      throw new AppError(error)
+      throw new AppError(error.message, 400)
     }
   }
 }

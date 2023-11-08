@@ -1,5 +1,5 @@
 const DishesRepository = require("../repositories/DishesRepository")
-const DishesUpdateImageService = require("../services/DishesServices/DishesUpdateImageService")
+const DishesUpdateImageService = require("../services/DishesImagesServices/DishesUpdateImageService")
 
 class DishesImageControllers {
   async update(req, res) {
@@ -16,7 +16,7 @@ class DishesImageControllers {
       dish_id,
     })
 
-    return res.json(dish)
+    return res.status(201).json(dish)
   }
 }
 

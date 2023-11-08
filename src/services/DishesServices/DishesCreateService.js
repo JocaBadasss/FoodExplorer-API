@@ -25,7 +25,7 @@ class DishesCreateServices {
       const dishNameAlreadyExists =
         await this.dishesRepository.verifyIfDishNameAlreadyExists(name)
 
-      if (dishNameAlreadyExists) {
+      if (dishNameAlreadyExists.length > 0) {
         throw new AppError("Prato já existe", 400)
       }
 

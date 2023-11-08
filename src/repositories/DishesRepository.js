@@ -21,6 +21,8 @@ class DishesRepository {
 
   async createTags(tagsToInsert) {
     await knex("dishes_tags").insert(tagsToInsert)
+
+    return
   }
 
   async updateDish({ name, category, description, price_cents, dish_id }) {
@@ -63,13 +65,12 @@ class DishesRepository {
       )
       .leftJoin("dishes_tags as t", "d.id", "t.dish_id")
       .where("d.id", dish_id)
-      .first()
 
     return dish
   }
 
-  async findDishAndTagsByDishId(dish_id) {
-    const dish = await knex("dishes").select("*").where("id", dish_id).first()
+  async findDishAndTagsByDishId({ dish_id }) {
+    const dish = await knex("dishes").select("*").where({ id: dish_id }).first()
     const tags = await knex("dishes_tags")
       .select("*")
       .where({ dish_id })
@@ -82,6 +83,25 @@ class DishesRepository {
     const dishes = await knex("dishes").select("*")
 
     return dishes
+  }
+
+  async indexByQuery(query) {
+    const dishes = await knex("dishes as d")
+      .select("d.*")
+      .leftJoin("dishes_tags as t", "d.id", "t.dish_id")
+      .whereLike("d.name", `%${query}%`)
+      .orWhereLike("d.category", `%${query}%`)
+      .orWhereLike("d.description", `%${query}%`)
+      .orWhereLike("t.name", `%${query}%`)
+      .first()
+
+    return dishes
+  }
+
+  async deleteDish(dish_id) {
+    const isDeleted = await knex("dishes").where({ id: dish_id }).delete()
+
+    return isDeleted
   }
 
   async updateDishImage({ dish, imageFileName, dish_id }) {
@@ -98,6 +118,16 @@ class DishesRepository {
       .first()
 
     return updatedDish
+  }
+
+  async indexFilteredDishes({ name, category, description, tags }) {
+    //quero fazer uma busca por nome, categoria, descrição e tags, que retorne todos os pratos que satisfazem as condições
+
+    const dishes = await knex("dishes")
+      .select("*")
+      .whereLike("name", `%${name}%`)
+      .orWhereLike("category", `%${category}%`)
+      .orWhereLike("description", `%${description}%`)
   }
 
   async deleteDishImage(dish) {

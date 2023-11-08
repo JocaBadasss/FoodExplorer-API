@@ -14,7 +14,7 @@ class OrdersCreateService {
 
       return order_id
     } catch (error) {
-      throw new AppError(error.message)
+      throw new AppError(error.message, 400)
     }
   }
 }

@@ -77,7 +77,7 @@ class TransactionOrderCreateService {
 
       return { ...transaction, order_id }
     } catch (error) {
-      throw new AppError("Erro ao criar transação")
+      throw new AppError("Erro ao criar transação", 400)
     }
   }
 }

@@ -19,8 +19,8 @@ const dishesUpdateServiceValidationSchema = object().shape({
     .required("O valor é obrigatório")
     .typeError("O valor deve estar no formato xx,xx (por exemplo, 10,50)")
     .matches(
-      /^[1-9]{1,2},[0-9]{2}$/,
-      "O valor deve estar no formato xx,xx (por exemplo, 10,50)"
+      /^[0-9]{1,3},[0-9]{2}$/,
+      "O valor deve estar no formato xx,xx (por exemplo, 10,50, 100,50)"
     ),
   tags: array()
     .strict(true)

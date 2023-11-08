@@ -37,6 +37,14 @@ class DishesRepository {
       price_cents: 7797,
       image: "",
     },
+    {
+      id: 6,
+      name: "Pumpkin Pie",
+      category: "Sobremesas",
+      description: "Tasty pumpkin pie with seasonal fruit.",
+      price_cents: 8997,
+      image: "",
+    },
   ]
   nextDishId = 1
   nextTagId = 1
@@ -86,10 +94,20 @@ class DishesRepository {
     { id: 13, name: "massa folhada", dish_id: 4, user_id: 1 },
     { id: 14, name: "pêssego", dish_id: 5, user_id: 1 },
     { id: 15, name: "cobertura de biscoito", dish_id: 5, user_id: 1 },
+    { id: 16, name: "rocketseat", dish_id: 6, user_id: 1 },
   ]
 
   async verifyIfDishNameAlreadyExists(name) {
-    const dish = this.dishes.find((dish) => dish.name === name)
+    let dish
+    dish = this.dishes.find((dish) => dish.name === name)
+
+    if (dish) {
+      return [dish]
+    }
+
+    if (!dish) {
+      return (dish = [])
+    }
 
     return dish
   }
@@ -114,8 +132,8 @@ class DishesRepository {
     this.dishes_tags.push(...tagsToInsert)
   }
 
-  async updateDish({ name, category, description, price_cents, id }) {
-    const updatedDish = this.dishes.find((dish) => dish.id === id)
+  async updateDish({ name, category, description, price_cents, dish_id }) {
+    const updatedDish = this.dishes.find((dish) => dish.id === dish_id)
 
     updatedDish.name = name
     updatedDish.category = category
@@ -172,7 +190,7 @@ class DishesRepository {
     return dishsAndTagsUnsorted
   }
 
-  async findDishAndTagsByDishId(dish_id) {
+  async findDishAndTagsByDishId({ dish_id }) {
     const dish = this.dishes.find((dish) => dish.id === dish_id)
 
     const tags = this.dishes_tags.filter((tags) => tags.dish_id === dish_id)
@@ -186,7 +204,48 @@ class DishesRepository {
     return dishes
   }
 
-  async updateDishImage({ dish, imageFileName, dish_id }) {
+  async indexByQuery(query) {
+    const searchWords = query.split(" ")
+    const filteredDishes = []
+
+    for (const dish of this.dishes) {
+      const dishTags = this.dishes_tags.filter((tag) => tag.dish_id === dish.id)
+      const tagNames = dishTags.map((tag) => tag.name)
+
+      if (
+        searchWords.some((word) =>
+          dish.name.toLowerCase().includes(word.toLowerCase())
+        ) ||
+        searchWords.some((word) =>
+          dish.category.toLowerCase().includes(word.toLowerCase())
+        ) ||
+        searchWords.some((word) =>
+          dish.description.toLowerCase().includes(word.toLowerCase())
+        ) ||
+        searchWords.some((word) =>
+          tagNames.some((tagName) =>
+            tagName.toLowerCase().includes(word.toLowerCase())
+          )
+        )
+      ) {
+        filteredDishes.push(dish)
+      }
+    }
+
+    return filteredDishes
+  }
+
+  async deleteDish(dish_id) {
+    const initialLength = this.dishes.length
+
+    this.dishes = this.dishes.filter((dish) => dish.id !== dish_id)
+
+    const isDeleted = this.dishes.length < initialLength
+
+    return isDeleted
+  }
+
+  async updateDishImage({ imageFileName, dish_id }) {
     const updatedDish = this.dishes.find((d) => d.id === dish_id)
 
     if (updatedDish) {

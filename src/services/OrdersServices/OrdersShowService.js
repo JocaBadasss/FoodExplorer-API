@@ -30,7 +30,7 @@ class OrdersShowService {
 
       return groupedOrders
     } catch (error) {
-      throw new AppError(error.message)
+      throw new AppError(error.message, 400)
     }
   }
 }

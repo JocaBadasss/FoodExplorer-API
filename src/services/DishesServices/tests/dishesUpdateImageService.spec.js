@@ -1,4 +1,4 @@
-const DishesUpdateImageService = require("../DishesUpdateImageService")
+const DishesUpdateImageService = require("../../DishesImagesServices/DishesUpdateImageService")
 const DishesRepositoryInMemory = require("../../../repositories/InMemory/DishesRepositoryInMemory")
 const AppError = require("../../../utils/AppError")
 

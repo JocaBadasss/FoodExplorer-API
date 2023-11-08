@@ -37,7 +37,7 @@ class DishesUpdateService {
       const newPrice = Number(price_cents.replace(",", ".")) * 100
 
       await this.dishesRepository.updateDish({
-        id,
+        dish_id: id,
         name,
         description,
         price_cents: newPrice,

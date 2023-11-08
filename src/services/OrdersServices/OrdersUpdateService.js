@@ -24,7 +24,7 @@ class OrdersUpdateService {
         status,
       })
     } catch (error) {
-      throw new AppError(error.message)
+      throw new AppError(error.message, 400)
     }
   }
 }

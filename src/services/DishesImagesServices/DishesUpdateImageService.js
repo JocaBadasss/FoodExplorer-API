@@ -25,7 +25,7 @@ class DishesUpdateImageService {
 
       return updatedDish
     } catch (error) {
-      throw new AppError(error.message)
+      throw new AppError(error.message, 400)
     }
   }
 }

@@ -61,15 +61,6 @@ describe("DishesCreateServices", () => {
       tags: ["alface", "cebola", "pão naan", "pepino", "rabanete", "tomate"],
     }
 
-    const dish2 = {
-      name: "Salada Ravanello3",
-      category: "Refeições",
-      description:
-        "Rabanetes, folhas verdes e molho agridoce salpicados com gergelim. O pão naan dá um toque especial.",
-      price_cents: "00,00",
-      tags: ["alface", "cebola", "pão naan", "pepino", "rabanete", "tomate"],
-    }
-
     const dish3 = {
       name: "Salada Ravanello1",
       category: "Refeições",
@@ -83,7 +74,7 @@ describe("DishesCreateServices", () => {
       await dishesCreateServices.execute(dish)
     }).rejects.toEqual(
       new AppError(
-        "Erro de validação: O valor deve estar no formato xx,xx (por exemplo, 10,50)",
+        "Erro de validação: O valor deve estar no formato xx,xx (por exemplo, 10,50, 100,50)",
         400
       )
     )
@@ -92,15 +83,7 @@ describe("DishesCreateServices", () => {
       await dishesCreateServices.execute(dish1)
     }).rejects.toEqual(
       new AppError(
-        "Erro de validação: O valor deve estar no formato xx,xx (por exemplo, 10,50)",
-        400
-      )
-    )
-    await expect(async () => {
-      await dishesCreateServices.execute(dish2)
-    }).rejects.toEqual(
-      new AppError(
-        "Erro de validação: O valor deve estar no formato xx,xx (por exemplo, 10,50)",
+        "Erro de validação: O valor deve estar no formato xx,xx (por exemplo, 10,50, 100,50)",
         400
       )
     )
@@ -109,13 +92,13 @@ describe("DishesCreateServices", () => {
       await dishesCreateServices.execute(dish3)
     }).rejects.toEqual(
       new AppError(
-        "Erro de validação: O valor deve estar no formato xx,xx (por exemplo, 10,50)",
+        "Erro de validação: O valor deve estar no formato xx,xx (por exemplo, 10,50, 100,50)",
         400
       )
     )
   })
 
-  it("should not be able to create a dish with a tag greater than 12 characters", async () => {
+  it("should not be able to create a dish with a tag greater than 20 characters", async () => {
     const dish = {
       name: "Salada Ravanello",
       category: "Refeições",
@@ -129,7 +112,7 @@ describe("DishesCreateServices", () => {
         "pepino",
         "rabanete",
         "tomate",
-        "1234567891234",
+        "1234567891234dfggasgasgasg",
       ],
     }
 
@@ -137,7 +120,7 @@ describe("DishesCreateServices", () => {
       await dishesCreateServices.execute(dish)
     }).rejects.toEqual(
       new AppError(
-        "Erro de validação: Um ingrediente deve ter no máximo 12 caracteres",
+        "Erro de validação: Um ingrediente deve ter no máximo 20 caracteres",
         400
       )
     )
@@ -216,7 +199,7 @@ describe("DishesCreateServices", () => {
       expect(error instanceof AppError).toBeTruthy()
       expect(error.message).toContain("Erro de validação")
       expect(error.message).toContain(
-        "Um ingrediente deve ter no máximo 12 caracteres"
+        "Um ingrediente deve ter no máximo 20 caracteres"
       )
       expect(error.statusCode).toEqual(400)
     }

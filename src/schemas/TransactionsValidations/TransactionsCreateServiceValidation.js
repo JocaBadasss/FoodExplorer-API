@@ -16,7 +16,7 @@ const payerSchema = object().shape({
 })
 
 const TransactionsCreateServiceValidationSchema = object().shape({
-  token: string().required(),
+  token: string(),
   issuer_id: string().required(),
   payment_method_id: string().required(),
   installments: number().required(),
