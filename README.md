@@ -8,7 +8,7 @@ This is the backend repository for the Food Explorer project, a fictitious resta
   
 ## Table of Contents
 
-- [⚙ Functionalities](#-functionalities)
+- [ Functionalities](#-functionalities)
   - [User Authentication and Authorization](#user-authentication-and-authorization)
   - [Role-Based Access Control](#role-based-access-control)
   - [Dish Management](#dish-management)
@@ -16,9 +16,9 @@ This is the backend repository for the Food Explorer project, a fictitious resta
   - [Payment Processing](#payment-processing)
   - [Order Management](#order-management)
 
-- [📂 Folder Structure and Code Organization](#-folder-structure-and-code-organization)
+- [ Folder Structure and Code Organization](#-folder-structure-and-code-organization)
 
-- [🚀 Technologies](#-technologies)
+- [ Technologies](#-technologies)
   - [Development Dependencies](#development-dependencies)
 
 - [Running the Project Locally](-#running-the-project-locally)
@@ -149,7 +149,11 @@ The `.env.example` file serves as a reference for setting up the required enviro
 
 ## 🏁 Getting Started
 
-Before proceeding, it's essential to create an admin account using the master credentials to access the application fully. Ensure to create an admin account with appropriate permissions.
+Before proceeding, it's essential to create an admin account using the master credentials to access the application fully.
+
+To create an admin account, utilize a POST request to the `/admin` route. Ensure you have the necessary permissions and follow the API's documentation or guidelines for admin account creation.
+
+
 
 
 
