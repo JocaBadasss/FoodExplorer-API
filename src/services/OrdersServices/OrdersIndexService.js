@@ -9,6 +9,7 @@ class OrdersIndexService {
     try {
       const orders = await this.ordersRepository.indexAllOrders(status)
 
+
       const groupedOrders = orders.reduce((result, order) => {
         const dish = {
           quantity: order.quantity,
@@ -23,7 +24,7 @@ class OrdersIndexService {
           result.push({
             id: order.id,
             status: order.status,
-            created_at: order.created_at,
+            date: order.created_at,
             dishs: [dish],
           })
         }

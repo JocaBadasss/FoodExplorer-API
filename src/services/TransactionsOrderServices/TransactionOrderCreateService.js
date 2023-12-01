@@ -34,7 +34,6 @@ class TransactionOrderCreateService {
         { abortEarly: false }
       )
     } catch (error) {
-      console.log("aqui validate")
       const formattedErrors = error.inner.map((err) => err.message).join(", ")
       throw new AppError(`Erro de validação: ${formattedErrors}`, 400)
     }
@@ -46,10 +45,13 @@ class TransactionOrderCreateService {
         this.transactionsRepository
       )
 
+
       const order_id = await ordersCreateService.execute({
         dishs_ids: dishs,
         user_id,
       })
+
+
 
       const transaction = await transactionsCreateService.execute({
         token,

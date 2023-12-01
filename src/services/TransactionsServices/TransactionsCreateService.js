@@ -29,7 +29,6 @@ class TransactionsCreateService {
         { abortEarly: false }
       )
     } catch (error) {
-      console.log("aqui validate")
       const formattedErrors = error.inner.map((err) => err.message).join(", ")
       throw new AppError(`Erro de validação: ${formattedErrors}`, 400)
     }

@@ -87,13 +87,13 @@ class DishesRepository {
 
   async indexByQuery(query) {
     const dishes = await knex("dishes as d")
+      .distinct("d.*")
       .select("d.*")
       .leftJoin("dishes_tags as t", "d.id", "t.dish_id")
       .whereLike("d.name", `%${query}%`)
       .orWhereLike("d.category", `%${query}%`)
       .orWhereLike("d.description", `%${query}%`)
       .orWhereLike("t.name", `%${query}%`)
-      .first()
 
     return dishes
   }
@@ -121,8 +121,6 @@ class DishesRepository {
   }
 
   async indexFilteredDishes({ name, category, description, tags }) {
-    //quero fazer uma busca por nome, categoria, descrição e tags, que retorne todos os pratos que satisfazem as condições
-
     const dishes = await knex("dishes")
       .select("*")
       .whereLike("name", `%${name}%`)
@@ -132,7 +130,7 @@ class DishesRepository {
 
   async deleteDishImage(dish) {
     const diskStorage = new DiskStorage()
-    await diskStorage.deleteFile(dish.image)
+    await diskStorage.deleteFile(dish)
   }
 }
 

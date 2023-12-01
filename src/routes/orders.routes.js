@@ -8,5 +8,6 @@ const ordersRouter = Router()
 
 ordersRouter.get("/", ensureIsAutheticated, ordersControllers.show)
 ordersRouter.get("/admin", ensureIsAdmin, ordersControllers.index)
+ordersRouter.patch("/", ensureIsAdmin, ordersControllers.update)
 
 module.exports = ordersRouter

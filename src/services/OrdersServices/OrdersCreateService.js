@@ -7,6 +7,7 @@ class OrdersCreateService {
 
   async execute({ dishs_ids, user_id }) {
     try {
+
       const order_id = await this.ordersRepository.createOrder({
         dishs_ids,
         user_id,

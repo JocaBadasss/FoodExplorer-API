@@ -20,8 +20,7 @@ class UserRepositoryInMemory {
   }
 
   async findById(id) {
-    // const user = await knex("users").select("*").where("id", id).first()
-    // return user
+
   }
 }
 

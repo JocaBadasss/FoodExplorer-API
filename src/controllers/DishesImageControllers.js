@@ -5,7 +5,6 @@ class DishesImageControllers {
   async update(req, res) {
     const { dish_id } = req.params
     const imageFileName = req.file.filename
-
     const dishesRepository = new DishesRepository()
     const dishesUpdateImageService = new DishesUpdateImageService(
       dishesRepository

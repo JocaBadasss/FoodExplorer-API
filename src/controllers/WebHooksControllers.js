@@ -1,11 +1,9 @@
-const {sendEventToClients} = require("../utils/sse")
+const { sendEventToClients } = require("../utils/sse")
 
 class WebHooksControllers {
   async create(req, res) {
     try {
       const response = req.body
-
-      console.log("payload do mercado pago", response)
 
       sendEventToClients(response)
 

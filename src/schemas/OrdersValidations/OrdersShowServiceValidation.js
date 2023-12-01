@@ -5,10 +5,10 @@ const OrdersUpdateServiceValidationSchema = object().shape({
     .required("O status é obrigatório")
     .oneOf(
       [
-        "pendente",
-        "entregue",
-        "cancelado",
-        "confirmado",
+        "Pendente",
+        "Entregue",
+        "Cancelado",
+        "Confirmado",
         "Pagamento recusado",
         "Preparando",
       ],

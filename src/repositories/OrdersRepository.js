@@ -2,7 +2,7 @@ const knex = require("../database/knex")
 
 class OrdersRepository {
   async createOrder({ dishs_ids, user_id }) {
-    const [order_id] = await knex("orders").insert({ status: "pendente" })
+    const [order_id] = await knex("orders").insert({ status: "Pendente" })
 
     await knex("orders_dishs").insert(
       dishs_ids.map((dish) => {
@@ -31,7 +31,7 @@ class OrdersRepository {
   async showUserOrders(user_id, status) {
     if (status) {
       const orders = await knex("orders as o")
-        .select("o.id", "o.status", "od.quantity", "d.name")
+        .select("o.id", "o.status", "od.quantity", "d.name", "oh.created_at")
         .join("orders_history as oh", "o.id", "oh.order_id")
         .join("orders_dishs as od", "o.id", "od.order_id")
         .join("dishes as d", "od.dish_id", "d.id")
@@ -42,7 +42,7 @@ class OrdersRepository {
     }
     if (!status) {
       const orders = await knex("orders as o")
-        .select("o.id", "o.status", "od.quantity", "d.name")
+        .select("o.id", "o.status", "od.quantity", "d.name", "oh.created_at")
         .join("orders_history as oh", "o.id", "oh.order_id")
         .join("orders_dishs as od", "o.id", "od.order_id")
         .join("dishes as d", "od.dish_id", "d.id")
@@ -57,7 +57,8 @@ class OrdersRepository {
   async indexAllOrders(status) {
     if (status) {
       const orders = await knex("orders as o")
-        .select("o.id", "o.status", "od.quantity", "d.name")
+        .select("o.id", "o.status", "od.quantity", "d.name", "oh.created_at")
+        .join("orders_history as oh", "o.id", "oh.order_id")
         .join("orders_dishs as od", "o.id", "od.order_id")
         .join("dishes as d", "od.dish_id", "d.id")
         .where("o.status", status)
@@ -67,7 +68,8 @@ class OrdersRepository {
 
     if (!status) {
       const orders = await knex("orders as o")
-        .select("o.id", "o.status", "od.quantity", "d.name")
+        .select("o.id", "o.status", "od.quantity", "d.name", "oh.created_at")
+        .join("orders_history as oh", "o.id", "oh.order_id")
         .join("orders_dishs as od", "o.id", "od.order_id")
         .join("dishes as d", "od.dish_id", "d.id")
 

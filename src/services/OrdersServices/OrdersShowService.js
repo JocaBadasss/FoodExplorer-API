@@ -22,7 +22,12 @@ class OrdersShowService {
         if (existingOrder) {
           existingOrder.dishs.push(dish)
         } else {
-          result.push({ id: order.id, status: order.status, dishs: [dish] })
+          result.push({
+            id: order.id,
+            status: order.status,
+            date: order.created_at,
+            dishs: [dish],
+          })
         }
 
         return result

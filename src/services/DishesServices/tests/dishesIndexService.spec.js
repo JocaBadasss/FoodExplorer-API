@@ -17,8 +17,6 @@ describe("DishesIndexService", () => {
 
     const dishes = await dishesIndexService.execute("prugna")
 
-    console.log(dishes)
-
     expect(dishes).toHaveLength(1)
   })
 
@@ -28,7 +26,6 @@ describe("DishesIndexService", () => {
 
     const dishes = await dishesIndexService.execute("rocketseat")
 
-    console.log(dishes)
 
     expect(dishes).toHaveLength(1)
   })
