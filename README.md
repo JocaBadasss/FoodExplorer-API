@@ -21,15 +21,15 @@ This is the backend repository for the Food Explorer project, a fictitious resta
 - [🚀 Technologies](#-technologies)
   - [Development Dependencies](#development-dependencies)
 
-- [Running the Project Locally](#running-the-project-locally)
+- [Running the Project Locally](-#running-the-project-locally)
 
-- [Getting Started](#getting-started)
+- [Getting Started](-#getting-started)
 
-- [Deploy](#deploy)
+- [Deploy](-#deploy)
   
-- [Contribution](#contribution)
+- [Contribution](-#contribution)
   
-- [Contact](#contact)
+- [Contact](#-contact)
 
 - [License](#-license)
 
@@ -42,7 +42,7 @@ This is the backend repository for the Food Explorer project, a fictitious resta
 <br>
 
 
-## ⚙ Functionalities
+## 🔧 Functionalities
 
 Highlighted functionalities encompass:
 
@@ -135,7 +135,7 @@ This project was developed using the following technologies:
 These technologies form the foundation of the project, covering server-side development, database interaction, middleware usage, authentication, validation, testing, and development convenience.
 
 
-## Running the Project Locally
+## 🏃‍♀️ Running the Project Locally
 
 To run this project locally, follow these steps:
 
@@ -147,7 +147,7 @@ To run this project locally, follow these steps:
 The `.env.example` file serves as a reference for setting up the required environment variables.
 
 
-## Getting Started
+## 🏁 Getting Started
 
 Before proceeding, it's essential to create an admin account using the master credentials to access the application fully. Ensure to create an admin account with appropriate permissions.
 
@@ -158,13 +158,13 @@ Before proceeding, it's essential to create an admin account using the master cr
 This project is licensed under the [MIT License](LICENSE).
 
 
-## Deploy
+## 🌐 Deploy
 The backend is hosted at [https://foodexplorer.fly.dev](https://foodexplorer.fly.dev). To access the frontend repository, visit [https://github.com/JocaBadasss/FoodExplorer](https://github.com/JocaBadasss/FoodExplorer).
 
-## Contribution
+## 🤝 Contribution
 Contributions are welcome! Feel free to open a pull request for enhancements, bug fixes, or new feature additions.
 
-## Contact
+## 📧 Contact
 For any queries or suggestions, please reach out via email at [joaocarlos1208@hotmail.com](mailto:joaocarlos1208@hotmail.com).
 
 
