@@ -5,6 +5,7 @@ This is the backend repository for the Food Explorer project, a fictitious resta
 </p>
 
 <p align="center">
+  
 ## Table of Contents
 
 - [⚙ Functionalities](#-functionalities)
