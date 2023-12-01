@@ -9,7 +9,10 @@ This is the backend repository for the Food Explorer project, a fictitious resta
 ## Table of Contents
 
 - [ Functionalities](#-functionalities)
+<<<<<<< HEAD
 
+=======
+>>>>>>> d28ce996fd3c8a2ba4c6a0bb1ad50e2b55ad112c
   - [User Authentication and Authorization](#user-authentication-and-authorization)
   - [Role-Based Access Control](#role-based-access-control)
   - [Dish Management](#dish-management)
@@ -20,7 +23,10 @@ This is the backend repository for the Food Explorer project, a fictitious resta
 - [ Folder Structure and Code Organization](#-folder-structure-and-code-organization)
 
 - [ Technologies](#-technologies)
+<<<<<<< HEAD
 
+=======
+>>>>>>> d28ce996fd3c8a2ba4c6a0bb1ad50e2b55ad112c
   - [Development Dependencies](#development-dependencies)
 
 - [Running the Project Locally](-#running-the-project-locally)
@@ -28,7 +34,13 @@ This is the backend repository for the Food Explorer project, a fictitious resta
 - [Getting Started](-#getting-started)
 
 - [Deploy](-#deploy)
+<<<<<<< HEAD
 - [Contribution](-#contribution)
+=======
+  
+- [Contribution](-#contribution)
+  
+>>>>>>> d28ce996fd3c8a2ba4c6a0bb1ad50e2b55ad112c
 - [Contact](#-contact)
 
 - [License](#-license)
@@ -128,7 +140,10 @@ This project was developed using the following technologies:
 - **yup:** A schema validation library.
 
 ### Development Dependencies
+<<<<<<< HEAD
 
+=======
+>>>>>>> d28ce996fd3c8a2ba4c6a0bb1ad50e2b55ad112c
 - **Jest:** JavaScript testing framework.
 - **nodemon:** Development tool for automatically restarting the server on file changes.
 - **@flydotio/dockerfile:** Tool for creating Dockerfiles.
@@ -136,6 +151,10 @@ This project was developed using the following technologies:
 
 These technologies form the foundation of the project, covering server-side development, database interaction, middleware usage, authentication, validation, testing, and development convenience.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d28ce996fd3c8a2ba4c6a0bb1ad50e2b55ad112c
 ## 🏃‍♀️ Running the Project Locally
 
 To run this project locally, follow these steps:
@@ -147,16 +166,28 @@ To run this project locally, follow these steps:
 
 The `.env.example` file serves as a reference for setting up the required environment variables.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d28ce996fd3c8a2ba4c6a0bb1ad50e2b55ad112c
 ## 🏁 Getting Started
 
 Before proceeding, it's essential to create an admin account using the master credentials to access the application fully.
 
 To create an admin account, utilize a POST request to the `/admin` route. Ensure you have the necessary permissions and follow the API's documentation or guidelines for admin account creation.
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> d28ce996fd3c8a2ba4c6a0bb1ad50e2b55ad112c
 ## 📝 License
 
 This project is licensed under the [MIT License](LICENSE).
 
+<<<<<<< HEAD
 ## 🌐 Deploy
 
 The backend is hosted at [https://foodexplorer.fly.dev](https://foodexplorer.fly.dev). To access the frontend repository, visit [https://github.com/JocaBadasss/FoodExplorer](https://github.com/JocaBadasss/FoodExplorer).
@@ -168,6 +199,18 @@ Contributions are welcome! Feel free to open a pull request for enhancements, bu
 ## 📧 Contact
 
 For any queries or suggestions, please reach out via email at [joaocarlos1208@hotmail.com](mailto:joaocarlos1208@hotmail.com).
+=======
+
+## 🌐 Deploy
+The backend is hosted at [https://foodexplorer.fly.dev](https://foodexplorer.fly.dev). To access the frontend repository, visit [https://github.com/JocaBadasss/FoodExplorer](https://github.com/JocaBadasss/FoodExplorer).
+
+## 🤝 Contribution
+Contributions are welcome! Feel free to open a pull request for enhancements, bug fixes, or new feature additions.
+
+## 📧 Contact
+For any queries or suggestions, please reach out via email at [joaocarlos1208@hotmail.com](mailto:joaocarlos1208@hotmail.com).
+
+>>>>>>> d28ce996fd3c8a2ba4c6a0bb1ad50e2b55ad112c
 
 ---
 
