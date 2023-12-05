@@ -168,14 +168,4 @@ Contributions are welcome! Feel free to open a pull request for enhancements, bu
 For any queries or suggestions, please reach out via email at [joaocarlos1208@hotmail.com](mailto:joaocarlos1208@hotmail.com).
 
 
-## 🌐 Deploy
-The backend is hosted at [https://foodexplorer.fly.dev](https://foodexplorer.fly.dev). To access the frontend repository, visit [https://github.com/JocaBadasss/FoodExplorer](https://github.com/JocaBadasss/FoodExplorer).
-
-## 🤝 Contribution
-Contributions are welcome! Feel free to open a pull request for enhancements, bug fixes, or new feature additions.
-
-## 📧 Contact
-For any queries or suggestions, please reach out via email at [joaocarlos1208@hotmail.com](mailto:joaocarlos1208@hotmail.com).
-
-
 Made with ♥ by Joca :wave:
